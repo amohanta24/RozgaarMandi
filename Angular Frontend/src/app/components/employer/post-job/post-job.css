@@ -1,0 +1,55 @@
+    
+:host {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+  }
+.postJobMainDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: none;
+    justify-content: center;   /* horizontal center */
+    align-items: center; 
+  }
+  
+    mat-card-header{
+      display: flex;
+      justify-content: center;
+    }
+  
+    mat-card-content{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  
+    mat-card-footer {
+      display: flex;
+      padding: 10px;
+    }
+  
+    mat-card{
+      display: flex;
+      min-width: 400px;
+      padding: 10px;
+      border-radius: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    mat-card:hover{
+      transform: scale(1.02); 
+      box-shadow: 0 15px 30px rgba(215, 212, 212, 0.5);
+    }
+  
+    
+     
+    
+  
+    
+    
+  
+  
+  

@@ -1,0 +1,63 @@
+    
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: none;
+  justify-content: center;   /* horizontal center */
+  align-items: center; 
+}
+mat-chip-set {
+  display: flex;
+  justify-content: center;      /* center the whole group */
+  align-items: center;          /* vertical alignment */
+  gap: 12px;                    /* even space between chips */
+  width: 100%;
+  flex-wrap: wrap;              /* chips wrap nicely on smaller screens */
+}
+
+  mat-card-header{
+    display: flex;
+    justify-content: center;
+  }
+
+  mat-card-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  mat-card-footer {
+    display: flex;
+    padding: 10px;
+  }
+
+  mat-card{
+    display: flex;
+    width: fit-content;
+    min-width: 600px;
+    padding: none;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  mat-card:hover{
+    transform: scale(1.02); 
+    box-shadow: 0 15px 30px rgba(215, 212, 212, 0.5);
+  }
+
+  .chip-set-main{
+    display: flex;
+    justify-content: center;      /* center the whole group */
+  align-items: center;   
+  }
+
+  
+  
+   
+  
+
+  
+  
+
+

@@ -1,0 +1,185 @@
+/* 🌄 PAGE BACKGROUND (Login Page Only) */
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background: url("/sunset_minimal_landscape_4k.jpg") no-repeat center center fixed; */
+    background-size: cover;
+    font-family: "Segoe UI", sans-serif;
+    position: relative;
+  }
+  
+  /* 🌙 Optional overlay to make form pop */
+  :host::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: rgba(0, 0, 0, 0.25); */
+    z-index: 0;
+  }
+  
+  /* ✅ Responsive fix for smaller screens */
+  @media screen and (max-width: 600px) {
+    :host {
+      background-size: cover;
+      background-attachment: scroll;
+    }
+  }
+  
+  /* 🧊 LOGIN BOX */
+.loginBox {
+  position: relative;
+  z-index: 1;
+  width: 360px;
+  min-height: 200px;
+  background: #106EBE;
+  border-radius: 15px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+  
+  /* ✨ POP-UP EFFECT ON HOVER */
+  .loginBox:hover {
+    transform: scale(1.05); /* slightly larger */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* deeper shadow */
+  }
+  
+  .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;   /* reduced from 10px or 20px */
+  margin-top: -10px;  
+  ;  /* pull logo slightly upward */
+}
+
+.logo {
+  max-width: 300px;     /* was 300px */
+  margin-bottom: 0;
+}
+
+  
+  /* 🔤 HEADINGS */
+  h3 {
+    margin: 0;
+    padding-bottom: 20px;
+    color: #19325b;
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  /* 🧩 INPUTS */
+  .loginBox input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+.loginBox input[type="text"],
+.loginBox input[type="password"] {
+  border: none;
+  border-bottom: 2px solid #262626;
+  outline: none;
+  height: 40px;
+  color: #ffffff; /* ✅ crisp and modern */
+  background: transparent;
+  font-size: 17px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.loginBox input[type="text"]:focus,
+.loginBox input[type="password"]:focus {
+  border-bottom: 2px solid #ed7421; /* accent line */
+  color:white; /* focus color */
+}
+
+  
+  .inputBox {
+    position: relative;
+  }
+  
+  /* 🔘 LOGIN BUTTON */
+  .login-btn {
+    border: none;
+    outline: none;
+    height: 42px;
+    font-size: 16px;
+    background: #19325b;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(25, 50, 91, 0.4);
+  }
+  
+  .login-btn:hover {
+    background: #ed7421;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(237, 116, 33, 0.5);
+  }
+  
+  /* 🧭 SIGN UP BUTTON */
+  .signup-btn {
+    border: none;
+    outline: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: inline-block;
+    background: linear-gradient(145deg, #19325b, #285296);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(25, 50, 91, 0.4);
+    margin-top: 15px;
+  }
+  
+  .signup-btn:hover {
+    background: linear-gradient(145deg, #285296, #1a406e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(25, 50, 91, 0.6);
+  }
+  
+  /* 🔴 Shake + Red effect */
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+  }
+  
+  .shake {
+    animation: shake 0.5s ease-in-out;
+    background-color: #d9534f !important;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+  }
+  
+  /* 🧠 Small Adjustments */
+  .text-center {
+    text-align: center;
+  }
+  .invalidUsername{
+    color: red;
+  }
+  
+  p {
+    color: #0000ff;
+  }
+  

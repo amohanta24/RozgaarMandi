@@ -1,0 +1,40 @@
+<div class="loginBox">
+  
+    <div class="logo-container">
+        <img class="logo" src="logo.png" alt="Rozgaarmandi Logo">
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <div class="inputBox">
+            <!-- combined error -->
+            @if (isSubmitted && loginForm.invalid && loginForm.get('username')?.invalid && loginForm.get('password')?.invalid) {
+                <div class="invalidUsername">
+                  Invalid Username/Email and Password Combination
+                </div>
+              } @else {
+                <!-- Username Error -->
+                @if (loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || isSubmitted)) {
+                  <div class="invalidUsername">
+                    Invalid Username or Email
+                  </div>
+                }
+                <!-- Password Error -->
+                @if (loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || isSubmitted)) {
+                  <div class="invalidUsername">
+                    Invalid Password
+                  </div>
+                }
+              }          
+            <input formControlName="username" id="uname" type="text" name="Username" placeholder="Email or Username" >
+            <input formControlName="password"  id="pass" type="password" name="Password" placeholder="Password">
+        </div>
+        <button type="submit" class="login-btn" [class.shake]="isShaking">Login</button>
+
+    </form>
+
+    <!-- Sign Up Button -->
+    <div class="text-center">
+        <button class="signup-btn" [routerLink]="['/signup']">Sign Up</button>
+    </div>
+</div>

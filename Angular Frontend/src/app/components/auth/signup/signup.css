@@ -1,0 +1,225 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("/sunset_minimal_landscape_4k.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+}
+
+:host::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25); /* soft dark overlay */
+  z-index: 0;
+}
+
+/* ✅ Responsive fix for smaller screens */
+@media screen and (max-width: 600px) {
+  :host {
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+
+.logo-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  max-width: none; /* or remove it completely */
+  width: 150px;    /* set your desired visible size */
+  height: auto;
+}
+
+
+/* ✅ FIXED SECTION */
+.signup-box {
+  display: grid;
+  grid-template-rows: auto; /* header | form | footer */
+  justify-items: center;
+  align-items: start;                /* allow expansion */
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+  min-width: 400px;
+  min-height: 400px;
+  height: auto;                      /* expands dynamically */
+  background: rgba(215, 181, 95, 0.15);
+  border-radius: 15px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+}
+
+.input-box {
+  width: 100%;
+  align-self: start; /* ✅ ensures content expands naturally */
+}
+
+/* ✅ Keep footer pinned at bottom */
+.footer {
+  align-self: end;
+  justify-self: center;
+  padding-bottom: 1.5rem;
+  display: grid;
+}
+
+.input-box input[type="text"],
+.input-box input[type="password"],
+.input-box input[type="email"],
+.input-box input[type="number"] {
+  border: none;
+  border-bottom: 2px solid #262626;
+  outline: none;
+  height: 40px;
+  color: #ffffff;
+  background: transparent;
+  font-size: 16px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+textarea {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #333;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  font-family: "Segoe UI", sans-serif;
+  width: 50%;
+  min-height: 100px;
+  border-radius: 20px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  resize: vertical;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Modern focus effect */
+textarea:focus {
+  border: 2px solid #ed7421;
+  box-shadow: 0 0 10px rgba(237, 116, 33, 0.3);
+  background-color: #fffaf5;
+}
+
+.input-box input[type="text"]:focus,
+.input-box input[type="password"]:focus,
+.input-box input[type="email"]:focus,
+.input-box input[type="number"]:focus {
+  border-bottom: 2px solid #ed7421;
+  color: #ed7421;
+}
+
+.input-box input[type="number"]::-webkit-outer-spin-button,
+.input-box input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-box input::placeholder {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.signup-btn {
+  border: none;
+  outline: none;
+  padding: 10px 25px;
+  font-size: 14px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: inline-block;
+  background: linear-gradient(145deg, #19325b, #285296);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(25, 50, 91, 0.4);
+  margin-top: 15px;
+}
+
+.signup-btn:hover:not(:disabled) {
+  background: linear-gradient(145deg, #285296, #1a406e);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(25, 50, 91, 0.6);
+}
+
+.signup-btn:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  opacity: 0.7;
+}
+
+.header {
+  align-items: start;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  height: auto; /* ✅ changed from 0 to auto */
+}
+
+/* ✅ all grids below remain same */
+.first-input-grid,
+.Busines-field-grid,
+.worker-field-grid,
+.employer-individual-grid {
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  width: 100%;
+}
+
+.role-selection-grid,
+.employerType-select-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 2rem;
+  padding: 0.5rem 5rem;
+  width: 100%;
+  margin: 0;
+}
+
+.role-selection-grid label,
+.employerType-select-grid label {
+  color: #fff;
+  font-size: 12px;
+}
+
+.role-selection-grid select,
+.employerType-select-grid select {
+  
+  width: 100%;
+  height: 20px;
+  font-size: 12px;
+  border: none;
+  border-radius: 20px;
+  padding: 0 0.5rem;
+  text-align: center;
+  text-align-last: center;
+}

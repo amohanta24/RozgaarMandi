@@ -1,0 +1,14 @@
+<div class="dialog-main">
+<h2 mat-dialog-title>Confirm Job Post</h2>
+    <mat-dialog-content>
+      <p><strong>Job Title:</strong> {{ data.jobTitle }}</p>
+      <p><strong>Duration:</strong> {{ data.duration }}</p>
+      <p><strong>Pay:</strong> {{ data.pay }}</p>
+      <p><strong>Location:</strong> {{ data.location }}</p>
+      <p><strong>Description:</strong> {{ data.jobDescription }}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button class="btn btn-primary" (click)="onConfirm()">Post</button>
+    </mat-dialog-actions>
+  </div>

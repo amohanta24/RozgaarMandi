@@ -1,0 +1,48 @@
+/* Dialog box styling */
+/* .dialog-box{
+    height: 100px;
+} */
+
+::ng-deep .mat-mdc-dialog-surface {
+    background-color: #fff6f6;
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Title */
+  .error-dialog-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #c62828;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  /* Message box */
+  .error-dialog-content {
+    background-color: #ffecec;
+    border: 1px solid #ffbcbc;
+    border-radius: 8px;
+    padding: 16px;
+    color: #222;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: left;
+  }
+  
+  /* Action alignment */
+  .error-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  
+  .error-dialog-actions button {
+    border-radius: 8px;
+    padding: 6px 18px;
+    font-weight: 500;
+  }
+  

@@ -1,0 +1,25 @@
+<div class="container">
+
+    @for (job of jobList; track job.jobId) {
+        <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>{{job.jobTitle}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{job.jobDescription }}</p>
+            <div class="chip-set-main">
+            <mat-chip-set aria-label="Chihuahua traits">
+              <mat-chip>{{ job.duration }}</mat-chip>
+              <mat-chip>₹{{job.pay}}</mat-chip>
+              <mat-chip>{{ job.location }}</mat-chip>
+            </mat-chip-set>
+          </div>
+          </mat-card-content>
+            <mat-card-footer class="footer">
+              <button class="btn btn-primary col-6 mx-auto" type="button" (click)="viewApplications(job)" [disabled]="job.applied">Apply</button>
+            </mat-card-footer>
+             </mat-card>
+}
+</div>
+
+
