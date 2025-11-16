@@ -28,4 +28,5 @@ export class postJobFormDialog implements OnInit{
 
   onConfirm(): void {
     this.dialogRef.close(true);
-  }}
+  }
+}

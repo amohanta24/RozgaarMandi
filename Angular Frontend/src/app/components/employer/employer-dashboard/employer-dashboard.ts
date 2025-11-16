@@ -22,11 +22,19 @@ export class EmployerDashboard {
   @ViewChild(MyJobs) myjobs!: MyJobs;
   @ViewChild(EmployerAssignedJobs) employerAssignedJobs!: EmployerAssignedJobs;
   @ViewChild(EmployerCompletedJobs) employerCompletedJobs!: EmployerCompletedJobs;
+  @ViewChild(PostJob) postJob!: PostJob;
+
 drawer: any;
+
+    selectedTabIndex=0;
+    tabSwitchedAfterJobPosted = false;
   
 
   onTabSwitch(event:MatTabChangeEvent){
     switch(event.index){
+      case 0: 
+        this.postJob.onTabActivated();
+        break;
       case 1:
         this.myjobs.onTabActivated();
         break;
@@ -39,4 +47,12 @@ drawer: any;
       default:
         break;
     }
-  }}
+  }
+
+  swithToTab(index : number){
+    this.selectedTabIndex = index;
+    this.tabSwitchedAfterJobPosted = true;
+  }
+
+
+}

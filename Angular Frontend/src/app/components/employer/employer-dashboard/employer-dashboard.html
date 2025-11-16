@@ -4,14 +4,13 @@
 />
 <app-navbar></app-navbar>
 
+ 
 
 
+  <mat-tab-group animationDuration="200ms" (selectedTabChange)="onTabSwitch($event)" [(selectedIndex)]="selectedTabIndex" >
 
-  <mat-tab-group animationDuration="200ms" (selectedTabChange)="onTabSwitch($event)" >
-
-  <div class="post-job">
-    <mat-tab label="Post Jobs"><app-post-job></app-post-job></mat-tab>
-  </div>
+ 
+    <mat-tab label="Post Jobs"><app-post-job  (switchTabEvent)="swithToTab($event)" [tabSwitchedAfterJobPosted] = "tabSwitchedAfterJobPosted"></app-post-job></mat-tab>
     <mat-tab label="My Jobs"><app-my-jobs></app-my-jobs></mat-tab>
     <mat-tab label="Assigned Jobs"><app-employer-assigned-jobs></app-employer-assigned-jobs></mat-tab>
     <mat-tab label="Completed Jobs"><app-employer-completed-jobs></app-employer-completed-jobs></mat-tab>

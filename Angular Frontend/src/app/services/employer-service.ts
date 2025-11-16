@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Review } from './review';
 import { JobStatus } from '../models/Enum.model';
 import { Job } from '../models/jobresponse.model';
+import { JobRequest } from '../models/JobRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,13 @@ export class EmployerService {
     getCompletedJobsUri : string = `${this.hostUrl}${this.pathUrl}/completedJobs`;
     getReviewByIdUri : string =  `${this.hostUrl}/review/getReviewById/"`;
     changeStatusUri : string = `${this.hostUrl}/job/changeStatus`;
+    postJobUri : string = `${this.hostUrl}/job/postJob`;
 
 
+
+    postJob(jobRequest : JobRequest) : Observable<Job>{
+      return this.httpClient.post<Job>(this.postJobUri,jobRequest);
+    }
 
     getPostedJobs() : Observable<Job[]>{
       return this.httpClient.get<Job[]>(this.getPostedJobsUri);
