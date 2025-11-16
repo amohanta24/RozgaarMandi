@@ -1,5 +1,6 @@
 package com.rozgaarmandi.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,7 @@ public class EmployerService {
 
 	public List<Job> getJobsByEmployer(String header) throws BusinessValidationException {
 		Employer employer = (Employer) jwt.getUserFromHeader(header);
-		List<Job> postedJobs = employer.getPostedJobs();
+		List<Job> postedJobs = employer.getPostedJobs().stream().sorted(Comparator.comparing(Job::getCreatedOn)).toList();
 		return postedJobs;
 	}
 
