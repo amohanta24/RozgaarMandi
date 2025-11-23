@@ -19,7 +19,10 @@ import com.rozgaarmandi.RequestDTO.JobRequestDTO;
 import com.rozgaarmandi.RequestDTO.SignUpDTO;
 import com.rozgaarmandi.Service.LoginService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class DataLoader implements ApplicationRunner {
 
 	@Autowired
@@ -32,30 +35,34 @@ public class DataLoader implements ApplicationRunner {
 	private LoginService loginService;
 
 	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		List<JobRequestDTO> jobList = mapper.readValue(this.getJobs(), new TypeReference<List<JobRequestDTO>>() {
-		});
-		SignUpDTO workerSignup = mapper.readValue(this.getWorker(), SignUpDTO.class);
-		SignUpDTO employerIndSignup = mapper.readValue(this.getEmployerInd(), SignUpDTO.class);
-		SignUpDTO employerBusinessSignup = mapper.readValue(this.getEmployerBusiness(), SignUpDTO.class);
-		
-		
+	public void run(ApplicationArguments args){
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			List<JobRequestDTO> jobList = mapper.readValue(this.getJobs(), new TypeReference<List<JobRequestDTO>>() {
+			});
+			SignUpDTO workerSignup = mapper.readValue(this.getWorker(), SignUpDTO.class);
+			SignUpDTO employerIndSignup = mapper.readValue(this.getEmployerInd(), SignUpDTO.class);
+			SignUpDTO employerBusinessSignup = mapper.readValue(this.getEmployerBusiness(), SignUpDTO.class);
+			
+			
 
-		UserInfo worker = loginService.signUp(workerSignup);
-		UserInfo employerInd = loginService.signUp(employerIndSignup);
-		UserInfo employerBusinessInd = loginService.signUp(employerBusinessSignup);
-		
+			UserInfo worker = loginService.signUp(workerSignup);
+			UserInfo employerInd = loginService.signUp(employerIndSignup);
+			UserInfo employerBusinessInd = loginService.signUp(employerBusinessSignup);
+			
 
 
-		List<Job> list = jobList.stream().map(obj -> {
-			Job job = modelMapper.map(obj, Job.class);
-			job.setStatus(JobStatus.OPEN);
-			job.setEmployer((Employer) employerInd);
-			return job;
-		}).toList();
+			List<Job> list = jobList.stream().map(obj -> {
+				Job job = modelMapper.map(obj, Job.class);
+				job.setStatus(JobStatus.OPEN);
+				job.setEmployer((Employer) employerInd);
+				return job;
+			}).toList();
 
-		jobRepo.saveAll(list);
+			jobRepo.saveAll(list);
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+		}
 
 	}
 
