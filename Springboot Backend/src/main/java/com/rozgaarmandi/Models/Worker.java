@@ -3,8 +3,6 @@ package com.rozgaarmandi.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rozgaarmandi.Model.WorkerJobApplication;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -18,7 +16,7 @@ import lombok.Data;
 public class Worker extends UserInfo {
 	
 	
-	private List<String> skills;
+	private String skills;
 	private String location;
 	
 	@ManyToMany(mappedBy = "appliedWorkers")

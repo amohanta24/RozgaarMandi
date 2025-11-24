@@ -1,6 +1,7 @@
 package com.rozgaarmandi.Utils;
 
 import java.util.List;
+import java.util.OptionalDouble;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.rozgaarmandi.Models.Employer;
 import com.rozgaarmandi.Models.Job;
+import com.rozgaarmandi.Models.Job.JobStatus;
 import com.rozgaarmandi.Models.Payment;
 import com.rozgaarmandi.Models.Review;
 import com.rozgaarmandi.Models.UserInfo;
 import com.rozgaarmandi.Models.Worker;
-import com.rozgaarmandi.Repositories.PaymentRepository;
 import com.rozgaarmandi.ResponseDTO.EmployerResponseDTO;
 import com.rozgaarmandi.ResponseDTO.JobResponseDTO;
 import com.rozgaarmandi.ResponseDTO.PaymentResponseDTO;
@@ -63,14 +64,15 @@ public class MapperUtils{
 	                              List.of((Worker) workerOrList);
 
 	    return workerList.stream().map(obj -> {
+	    	
 	        WorkerResponseDTO dto = modelMapper.map(obj, WorkerResponseDTO.class);
+	        
+			OptionalDouble averageRating = obj.getAssignedJobs().stream()
+					.filter(job -> job.getStatus().equals(JobStatus.COMPLETED)).map(Job::getReviews)
+					.flatMap(List::stream).mapToDouble(Review::getRating).average();
 
-	        dto.setAppliedJobIds(obj.getAppliedJobs() != null ? obj.getAppliedJobs().stream().map(Job::getJobId).toList() : null);
-	        dto.setAssignedJobIds(obj.getAssignedJobs() != null ? obj.getAssignedJobs().stream().map(Job::getJobId).toList() : null);
-	        dto.setPaymentIds(obj.getPayments() != null ? obj.getPayments().stream().map(Payment::getId).toList() : null);
-	        dto.setReceivedReviewIds(obj.getReceivedReviews() != null  ? obj.getReceivedReviews().stream().map(Review::getReviewId).toList() : null);
-	        dto.setWrittenReviewIds(obj.getWrittenReviews() != null ? obj.getWrittenReviews().stream().map(Review::getReviewId).toList() : null);
-
+	        dto.setRating(averageRating.isPresent() ? averageRating.getAsDouble() : null);
+	        
 	        return dto;
 	    }).toList();
 	}

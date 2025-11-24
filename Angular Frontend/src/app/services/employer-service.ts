@@ -6,6 +6,8 @@ import { Review } from './review';
 import { JobStatus } from '../models/Enum.model';
 import { Job } from '../models/jobresponse.model';
 import { JobRequest } from '../models/JobRequest';
+import { MyJobs } from '../components/employer/my-jobs/my-jobs';
+import { MyJobsModel } from '../models/MyJobsModel.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +35,12 @@ export class EmployerService {
       return this.httpClient.post<Job>(this.postJobUri,jobRequest);
     }
 
-    getPostedJobs() : Observable<Job[]>{
-      return this.httpClient.get<Job[]>(this.getPostedJobsUri);
+    getPostedJobs() : Observable<MyJobsModel[]>{
+      return this.httpClient.get<MyJobsModel[]>(this.getPostedJobsUri);
     }
 
-    getApplicants() : Observable<Job[]>{
-      return this.httpClient.get<Job[]>(this.getApplicantsUri);
+    getApplicants(jobId:any) : Observable<Job[]>{
+      return this.httpClient.get<Job[]>(`${this.getApplicantsUri}?jobId=${jobId}`);
     }
 
     assignJobToWorker() : Observable<Job[]>{

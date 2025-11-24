@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rozgaarmandi.Exception.BusinessValidationException;
 import com.rozgaarmandi.Models.Employer;
 import com.rozgaarmandi.Models.Job;
+import com.rozgaarmandi.Models.JobPostedByEmployerResponse;
 import com.rozgaarmandi.Models.Payment;
 import com.rozgaarmandi.Models.Worker;
 import com.rozgaarmandi.ResponseDTO.EmployerResponseDTO;
@@ -41,10 +42,9 @@ public class EmployerController {
 	
 	@PreAuthorize("hasAuthority('EMPLOYER')")
 	@GetMapping("/jobs")
-    public ResponseEntity<List<JobResponseDTO>> getMyJobs(@RequestHeader("Authorization") String header) throws BusinessValidationException {
-            List<Job> jobsByEmployer = employerService.getJobsByEmployer(header);
-            List<JobResponseDTO> response = MapperUtils.jobToJobResponseDTO(jobsByEmployer);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<List<JobPostedByEmployerResponse>> getMyJobs(@RequestHeader("Authorization") String header) throws BusinessValidationException {
+            List<JobPostedByEmployerResponse> jobsByEmployer = employerService.getJobsByEmployer(header);
+            return new ResponseEntity<>(jobsByEmployer, HttpStatus.OK);
     }
 	
 	@PreAuthorize("hasAuthority('EMPLOYER')")

@@ -33,6 +33,6 @@ public class SignUpDTO {
 
 
 	// Worker-specific fields
-	private List<String> skills;
+	private String skills;
 
 }

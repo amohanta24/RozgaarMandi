@@ -83,7 +83,9 @@ public class JwtAuthFilter extends OncePerRequestFilter{
 	}
 	
 	private void logRequestResponse(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response)
-	        throws IOException {String requestBody = new String(request.getContentAsByteArray(), request.getCharacterEncoding());
+	        throws IOException {
+		
+			String requestBody = new String(request.getContentAsByteArray(), request.getCharacterEncoding());
 	        String responseBody = new String(response.getContentAsByteArray(), response.getCharacterEncoding());
 
 	     // Get Authorization header

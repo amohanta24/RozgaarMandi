@@ -10,12 +10,17 @@ import org.springframework.stereotype.Service;
 import com.rozgaarmandi.Exception.BusinessValidationException;
 import com.rozgaarmandi.Models.Employer;
 import com.rozgaarmandi.Models.Job;
+import com.rozgaarmandi.Models.JobPostedByEmployerResponse;
 import com.rozgaarmandi.Models.Payment;
 import com.rozgaarmandi.Models.Worker;
 import com.rozgaarmandi.Models.Job.JobStatus;
 import com.rozgaarmandi.Repositories.EmployerRepository;
 import com.rozgaarmandi.Repositories.JobRepository;
+import com.rozgaarmandi.Repositories.WorkerRepository;
 import com.rozgaarmandi.ResponseDTO.EmployerResponseDTO;
+import com.rozgaarmandi.ResponseDTO.JobResponseDTO;
+import com.rozgaarmandi.ResponseDTO.WorkerResponseDTO;
+import com.rozgaarmandi.Utils.MapperUtils;
 @Service
 public class EmployerService {
 	
@@ -28,6 +33,9 @@ public class EmployerService {
 	@Autowired
 	private EmployerRepository empRepo;
 	
+	@Autowired
+	private WorkerRepository workerRepo;
+	
 	public Employer getEmployerById(int id) throws BusinessValidationException {
 		
 		Optional<Employer> emp = empRepo.findById(id);
@@ -38,10 +46,23 @@ public class EmployerService {
 	}
 	
 
-	public List<Job> getJobsByEmployer(String header) throws BusinessValidationException {
+	public List<JobPostedByEmployerResponse> getJobsByEmployer(String header) throws BusinessValidationException {
 		Employer employer = (Employer) jwt.getUserFromHeader(header);
 		List<Job> postedJobs = employer.getPostedJobs().stream().sorted(Comparator.comparing(Job::getCreatedOn)).toList();
-		return postedJobs;
+		
+		List<JobResponseDTO> jobs = MapperUtils.jobToJobResponseDTO(postedJobs);
+		
+		List<JobPostedByEmployerResponse> responseJobList = jobs.stream().map(job -> {
+			JobPostedByEmployerResponse response = new JobPostedByEmployerResponse();
+			response.setJob(job);
+			response.setAppliedWorkers(MapperUtils.workerToWorkerResponseDTO(workerRepo.findByIdIn(job.getAppliedWorkerIds())));
+			return response;
+		}).toList();
+		
+		return responseJobList;
+		
+		
+		
 	}
 
 	public List<Worker> getApplicantsForJob(int jobId, String header) throws BusinessValidationException {

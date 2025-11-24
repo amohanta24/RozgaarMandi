@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.rozgaarmandi.Exception.BusinessValidationException;
-import com.rozgaarmandi.Model.WorkerJobApplication;
 import com.rozgaarmandi.Models.Job;
 import com.rozgaarmandi.Models.Payment;
 import com.rozgaarmandi.Models.Worker;
+import com.rozgaarmandi.Models.WorkerJobApplication;
 import com.rozgaarmandi.Models.Job.JobStatus;
 import com.rozgaarmandi.Repositories.JobRepository;
 import com.rozgaarmandi.Repositories.WorkerRepository;

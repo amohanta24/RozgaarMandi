@@ -1,23 +1,49 @@
+
+   
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container">
 
-    @for (job of jobList; track job.jobId) {
+    @for (job of jobList; track job) {
         <mat-card class="example-card" appearance="outlined">
             <mat-card-header>
-              <mat-card-title>{{job.jobTitle}}</mat-card-title>
+              <mat-card-title>{{job.job.jobTitle}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <p>{{job.jobDescription }}</p>
+              <p>{{job.job.jobDescription }}</p>
             <div class="chip-set-main">
             <mat-chip-set aria-label="Chihuahua traits">
-              <mat-chip>{{ job.duration }}</mat-chip>
-              <mat-chip>₹{{job.pay}}</mat-chip>
-              <mat-chip>{{ job.location }}</mat-chip>
+              <mat-chip>{{ job.job.duration }}</mat-chip>
+              <mat-chip>₹{{job.job.pay}}</mat-chip>
+              <mat-chip>{{ job.job.location }}</mat-chip>
             </mat-chip-set>
           </div>
           </mat-card-content>
             <mat-card-footer class="footer">
-              <button class="btn btn-primary col-6 mx-auto" type="button" (click)="viewApplications(job)" [disabled]="job.applied">Apply</button>
+              <button class="btn btn-primary col-6 mx-auto" type="button" (click)="toggleApplicants(job)">
+                {{job.viewApplicants ? 'Hide Applicants' : 'View Applicants'}}
+              </button>
             </mat-card-footer>
+
+            @if(job.viewApplicants){
+            <mat-card class ='Applicant-container'> 
+              <mat-card-header>
+                <mat-card-title>Applicants</mat-card-title>
+                <mat-card-subtitle>{{job.applicants?.length || 0 +' applicants'}}</mat-card-subtitle>
+              </mat-card-header>
+            @for (applicant of job.applicants; track applicant) {
+              <mat-card class ='Applicant-card'>
+              <mat-card-header class="applicant-header">
+                <mat-card-title>{{applicant.firstName + ' '+ applicant.lastName}}</mat-card-title>
+                @for(star of getStars(applicant.rating); track star){
+                  <mat-icon class="applicant-rating">star</mat-icon>
+                }
+              </mat-card-header>
+                <mat-card-subtitle>{{applicant.skills}}</mat-card-subtitle>
+                <mat-card-content>{{applicant.location}}</mat-card-content>
+              </mat-card> 
+      }
+          </mat-card>
+      }
              </mat-card>
 }
 </div>

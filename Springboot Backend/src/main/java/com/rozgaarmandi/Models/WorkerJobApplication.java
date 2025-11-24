@@ -1,12 +1,9 @@
-package com.rozgaarmandi.Model;
+package com.rozgaarmandi.Models;
 
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.rozgaarmandi.Models.Job;
-import com.rozgaarmandi.Models.Worker;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

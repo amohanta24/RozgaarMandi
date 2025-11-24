@@ -76,7 +76,7 @@ public class DataLoader implements ApplicationRunner {
 				  "role": "WORKER",
 				  "workerFirstName": "Rajesh",
 				  "workerLastName": "Kumar",
-				  "skills": ["Plumbing", "Electrical Repair", "Tile Fitting"]
+				  "skills": "Plumbing, Electrical Repair, Tile Fitting"
 				}
 				""";
 	}
