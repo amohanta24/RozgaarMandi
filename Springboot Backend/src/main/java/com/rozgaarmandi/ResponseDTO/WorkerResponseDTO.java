@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class WorkerResponseDTO extends UserResponseDTO{
 	
+	private Integer workerId;
 	private String skills;
 	private List<Integer> appliedJobIds;
 	private List<Integer> assignedJobIds;

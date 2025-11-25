@@ -13,6 +13,6 @@ public class JobPostedByEmployerResponse {
 	
 	  
 	private JobResponseDTO job;
-	private List<WorkerResponseDTO> appliedWorkers;
+	private List<WorkerResponseDTO> applicants;
 	
 }

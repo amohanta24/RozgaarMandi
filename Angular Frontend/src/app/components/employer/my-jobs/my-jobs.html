@@ -1,51 +1,90 @@
-
    
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container">
 
-    @for (job of jobList; track job) {
-        <mat-card class="example-card" appearance="outlined">
-            <mat-card-header>
-              <mat-card-title>{{job.job.jobTitle}}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>{{job.job.jobDescription }}</p>
-            <div class="chip-set-main">
-            <mat-chip-set aria-label="Chihuahua traits">
-              <mat-chip>{{ job.job.duration }}</mat-chip>
-              <mat-chip>₹{{job.job.pay}}</mat-chip>
-              <mat-chip>{{ job.job.location }}</mat-chip>
-            </mat-chip-set>
-          </div>
-          </mat-card-content>
-            <mat-card-footer class="footer">
-              <button class="btn btn-primary col-6 mx-auto" type="button" (click)="toggleApplicants(job)">
-                {{job.viewApplicants ? 'Hide Applicants' : 'View Applicants'}}
-              </button>
-            </mat-card-footer>
+  @for (job of jobList; track job) {
+      
+  <mat-card class="parent-job-card" appearance="outlined">
+    <mat-card-header class="job-header">
+      <mat-card-title>{{job.job.jobTitle}}</mat-card-title>
+      <button type="button" class="btn btn-outline-danger" (click)="deleteJob(job)">
+        <svg
+          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
+          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
+        </svg>    
+      </button>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content">
+      <p>{{job.job.jobDescription }}</p>
+      <div class="chip-set-main">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip>{{ job.job.duration }}</mat-chip>
+          <mat-chip>₹{{job.job.pay}}</mat-chip>
+          <mat-chip>{{ job.job.location }}</mat-chip>
+        </mat-chip-set>
+      </div>
+    </mat-card-content>
+    <mat-card-footer class="footer">
+      <div class="applicant-wording-header">
+        <mat-card-title>Applicants</mat-card-title>
+        <mat-card-subtitle>{{job.applicants?.length || 0}} applicants</mat-card-subtitle>
+      </div>
+      <div class="button-container">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" (click)="toggleApplicants(job)">
+              {{job.viewApplicants ? 'Hide Applicants' : 'View Applicants'}}
+            </button>
+      </div>
+    </mat-card-footer>
 
-            @if(job.viewApplicants){
-            <mat-card class ='Applicant-container'> 
-              <mat-card-header>
-                <mat-card-title>Applicants</mat-card-title>
-                <mat-card-subtitle>{{job.applicants?.length || 0 +' applicants'}}</mat-card-subtitle>
-              </mat-card-header>
-            @for (applicant of job.applicants; track applicant) {
-              <mat-card class ='Applicant-card'>
-              <mat-card-header class="applicant-header">
-                <mat-card-title>{{applicant.firstName + ' '+ applicant.lastName}}</mat-card-title>
-                @for(star of getStars(applicant.rating); track star){
-                  <mat-icon class="applicant-rating">star</mat-icon>
+    
+  </mat-card>
+  
+  @if(job.viewApplicants){         
+    @for (applicant of job.applicants; track applicant) {
+      <div class="applicant-container">
+        <mat-card class="Applicant-card">
+          
+          <div class="applicant-header">
+            <div class="name-rating-wrapper">
+              <mat-card-title class="applicant-name">
+                {{ applicant.firstName }} {{ applicant.lastName }}
+              </mat-card-title>
+              <div class="rating">
+                @for (star of getStars(applicant.rating); track star) {
+                  <mat-icon class="star">{{star}}</mat-icon>
                 }
-              </mat-card-header>
-                <mat-card-subtitle>{{applicant.skills}}</mat-card-subtitle>
-                <mat-card-content>{{applicant.location}}</mat-card-content>
-              </mat-card> 
-      }
-          </mat-card>
-      }
-             </mat-card>
+              </div>
+            </div>
+      
+            <button 
+              type="button" 
+              class="btn btn-outline-success assign-btn"
+              (click)="assignJob(job,applicant)">
+              Assign
+            </button>
+          </div>
+      
+          <div class="divider"></div>
+      
+          <div class="applicant-details">
+            <span>{{ applicant.skills }}</span> 
+            <span>{{ applicant.location }}</span>
+            <span>Kolkata, India</span>
+          </div>
+      
+        </mat-card>
+      </div>
+      
+
+  }
+    
+  }
+
+     
 }
+
 </div>
 
 

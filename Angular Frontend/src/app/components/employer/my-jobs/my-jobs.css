@@ -1,0 +1,138 @@
+.parent-job-card{
+    max-width: 400px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  .parent-job-card-footer{
+    padding: 16px;
+  }
+  
+  .container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;  
+    width: fit-content;
+  }
+
+  mat-chip-set {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%; 
+    align-items : center
+  }
+
+  .mat-card-content{
+    padding-bottom: 10px;
+  }
+
+
+  
+
+  .applicant-header{
+    display: flex;
+  }
+
+.star{
+    font-size: 16px;
+    margin-right: -7px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.rating {
+    margin-bottom: 0px !important; 
+    line-height: 1;                
+  }
+
+  .applicant-wording-header{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-top: 2px solid grey;
+  }
+  
+.btn-secondary{
+    height:35px;
+}
+
+.job-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.Applicant-card {
+    border-radius: 18px;
+    padding: 0;
+    width: 380px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  }
+  
+  /* Header row */
+  .applicant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px 8px 18px;
+  }
+  
+  /* Name + stars block */
+  .name-rating-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .applicant-name {
+    margin-bottom: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  /* Star spacing */
+  .rating .star {
+    font-size: 18px;
+    margin-right: -3px;
+    color: #ffb300;
+  }
+  
+  /* Assign button styling */
+  .assign-btn {
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    border-color: #2e7d32;
+    color: #2e7d32;
+  }
+  .assign-btn:hover {
+    background: #e8f5e9;
+  }
+  
+  /* Divider between header + details */
+  .divider {
+    height: 1px;
+    background: #eee;
+    margin: 4px 18px;
+  }
+  
+  /* Applicant details block */
+  .applicant-details {
+    padding: 10px 18px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 14px;
+    color: #555;
+    text-align: left;
+  }
+
+  
+
+

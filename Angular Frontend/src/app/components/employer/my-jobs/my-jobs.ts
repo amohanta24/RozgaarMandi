@@ -5,6 +5,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardFooter, Ma
 import { MatChipSet, MatChip } from "@angular/material/chips";
 import { MyJobsModel } from '../../../models/MyJobsModel.model';
 import { MatIcon } from "@angular/material/icon";
+import { Worker } from '../../../models/workerresponse.model';
 
 @Component({
   selector: 'app-my-jobs',
@@ -13,6 +14,7 @@ import { MatIcon } from "@angular/material/icon";
   styleUrl: './my-jobs.css'
 })
 export class MyJobs implements OnInit{
+
 
 
   constructor(private employerService:EmployerService){}
@@ -37,7 +39,12 @@ export class MyJobs implements OnInit{
     job.viewApplicants=!job.viewApplicants;
   }
 
-  getStars(rating: number): string[] {
+  getStars(rating: number | null | undefined): string[] {
+
+    if (rating == null || isNaN(rating)) {
+      return Array(5).fill('star_border');
+    }
+  
     const stars: string[] = [];
   
     for (let i = 1; i <= 5; i++) {
@@ -48,6 +55,14 @@ export class MyJobs implements OnInit{
   
     return stars;
   }
+
+  assignJob(job:MyJobsModel,applicant:Worker){
+    this.employerService.assignJob(job.job.jobId,applicant.workerId).subscribe();
+  }
+
+  deleteJob(job: MyJobsModel) {
+    throw new Error('Method not implemented.');
+    }
 
 
 }

@@ -72,9 +72,9 @@ public class JobController {
 
 	@PreAuthorize("hasAuthority('EMPLOYER')")
 	@PutMapping("/assign")
-	public ResponseEntity<JobResponseDTO> assignJob(@RequestParam int jobId, @RequestParam int workerId,
+	public ResponseEntity<JobResponseDTO> assignJob(@RequestParam String jobId, @RequestParam String workerId,
 			@RequestHeader("Authorization") String header) throws BusinessValidationException {
-		Job assignedJob = jobService.assignJob(jobId, header, workerId);
+		Job assignedJob = jobService.assignJob(Integer.valueOf(jobId), header, Integer.valueOf(workerId));
 		JobResponseDTO response = MapperUtils.jobToJobResponseDTO(assignedJob).get(0);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

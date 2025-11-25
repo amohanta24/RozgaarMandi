@@ -72,7 +72,7 @@ public class MapperUtils{
 					.flatMap(List::stream).mapToDouble(Review::getRating).average();
 
 	        dto.setRating(averageRating.isPresent() ? averageRating.getAsDouble() : null);
-	        
+	        dto.setWorkerId(obj.getId());
 	        return dto;
 	    }).toList();
 	}

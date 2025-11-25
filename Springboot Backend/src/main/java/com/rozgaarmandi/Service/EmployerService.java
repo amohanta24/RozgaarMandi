@@ -55,7 +55,7 @@ public class EmployerService {
 		List<JobPostedByEmployerResponse> responseJobList = jobs.stream().map(job -> {
 			JobPostedByEmployerResponse response = new JobPostedByEmployerResponse();
 			response.setJob(job);
-			response.setAppliedWorkers(MapperUtils.workerToWorkerResponseDTO(workerRepo.findByIdIn(job.getAppliedWorkerIds())));
+			response.setApplicants(MapperUtils.workerToWorkerResponseDTO(workerRepo.findByIdIn(job.getAppliedWorkerIds())));
 			return response;
 		}).toList();
 		

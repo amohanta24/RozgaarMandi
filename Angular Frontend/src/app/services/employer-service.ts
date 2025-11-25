@@ -28,8 +28,13 @@ export class EmployerService {
     getReviewByIdUri : string =  `${this.hostUrl}/review/getReviewById/"`;
     changeStatusUri : string = `${this.hostUrl}/job/changeStatus`;
     postJobUri : string = `${this.hostUrl}/job/postJob`;
+    assignJobUri : string = `${this.hostUrl}/job/assign`;
 
 
+
+    assignJob(jobId : number, workerId : number) : Observable<Job>{
+      return this.httpClient.put<Job>(`${this.assignJobUri}?jobId=${jobId}&&workerId=${workerId}`, null);
+    }
 
     postJob(jobRequest : JobRequest) : Observable<Job>{
       return this.httpClient.post<Job>(this.postJobUri,jobRequest);
