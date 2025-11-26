@@ -43,9 +43,6 @@ public class Job {
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
 
-	@ManyToMany
-	@JoinTable(name ="WORKER_JOB_APPLICATIONS", joinColumns =  @JoinColumn(name ="JOB_ID"), inverseJoinColumns = @JoinColumn(name = "WORKER_ID"))
-	private List<Worker> appliedWorkers;
 
 	@ManyToOne
 	@JoinColumn(name = "worker_id")
@@ -77,5 +74,9 @@ public class Job {
 	private Payment payment;
 	
 	private String isActive;
+
+	public List<Worker> getAppliedWorkers() {
+	return this.jobApplications.stream().map(WorkerJobApplication::getWorker).toList();
+	}
 
 }

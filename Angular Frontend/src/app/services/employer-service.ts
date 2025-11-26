@@ -13,7 +13,10 @@ import { MyJobsModel } from '../models/MyJobsModel.model';
   providedIn: 'root'
 })
 export class EmployerService {
+  
 
+  
+    
   constructor( private httpClient:HttpClient){}
 
   private hostUrl = environment.hostUrl;
@@ -29,11 +32,17 @@ export class EmployerService {
     changeStatusUri : string = `${this.hostUrl}/job/changeStatus`;
     postJobUri : string = `${this.hostUrl}/job/postJob`;
     assignJobUri : string = `${this.hostUrl}/job/assign`;
+    deleteJobUri : string = `${this.hostUrl}/job/delete`;
+    unassignJoburi : string = `${this.hostUrl}/job/unassign`;
 
 
 
     assignJob(jobId : number, workerId : number) : Observable<Job>{
       return this.httpClient.put<Job>(`${this.assignJobUri}?jobId=${jobId}&&workerId=${workerId}`, null);
+    }
+
+    unassignJob(jobId : number, workerId : number) : Observable<Job>{
+      return this.httpClient.put<Job>(`${this.unassignJoburi}?jobId=${jobId}&&workerId=${workerId}`, null);
     }
 
     postJob(jobRequest : JobRequest) : Observable<Job>{
@@ -52,8 +61,8 @@ export class EmployerService {
       return this.httpClient.put<Job[]>(this.assignJobToWorkerUri,null);
     }
 
-    getAssignedJobs(jobId:number) : Observable<Job[]>{
-      return this.httpClient.get<Job[]>(this.getAssignedJobsUri);
+    getAssignedJobs() : Observable<MyJobsModel[]>{
+      return this.httpClient.get<MyJobsModel[]>(this.getAssignedJobsUri);
     }   
 
     getCompletedJobs(): Observable<Job[]>{
@@ -63,4 +72,9 @@ export class EmployerService {
     changeStatus(jobId:number, jobStatus:JobStatus) : Observable<Job>{
       return this.httpClient.put<Job>(`${this.changeStatusUri}?jobId=${jobId}&&jobStatus=${jobStatus}`,null )
     }
+
+    deleteJob(jobId: any) : Observable<any> {
+      return this.httpClient.delete<any>(`${this.deleteJobUri}?jobId=${jobId}`);
+    }
+  
 }

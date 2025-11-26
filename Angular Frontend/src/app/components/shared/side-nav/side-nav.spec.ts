@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmationModal } from './confirmation-modal';
+import { SideNav } from './side-nav';
 
-describe('ConfirmationModal', () => {
-  let component: ConfirmationModal;
-  let fixture: ComponentFixture<ConfirmationModal>;
+describe('SideNav', () => {
+  let component: SideNav;
+  let fixture: ComponentFixture<SideNav>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfirmationModal]
+      imports: [SideNav]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ConfirmationModal);
+    fixture = TestBed.createComponent(SideNav);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

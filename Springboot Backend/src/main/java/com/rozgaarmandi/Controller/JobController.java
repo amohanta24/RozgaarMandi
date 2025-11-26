@@ -1,6 +1,7 @@
 package com.rozgaarmandi.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,10 +79,19 @@ public class JobController {
 		JobResponseDTO response = MapperUtils.jobToJobResponseDTO(assignedJob).get(0);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	@PreAuthorize("hasAuthority('EMPLOYER')")
+	@PutMapping("/unassign")
+	public ResponseEntity<JobResponseDTO> unAssignJob(@RequestParam String jobId, @RequestParam String workerId,
+			@RequestHeader("Authorization") String header) throws BusinessValidationException {
+		Job assignedJob = jobService.unassignJob(Integer.valueOf(jobId), header, Integer.valueOf(workerId));
+		JobResponseDTO response = MapperUtils.jobToJobResponseDTO(assignedJob).get(0);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 
 	@PreAuthorize("hasAuthority('EMPLOYER')")
 	@DeleteMapping("/delete")
-	public Object deleteJob(@RequestParam int jobId, @RequestHeader("Authorization") String header)
+	public ResponseEntity<Map<String, String>> deleteJob(@RequestParam int jobId, @RequestHeader("Authorization") String header)
 			throws BusinessValidationException {
 		return jobService.deleteJob(jobId, header);
 	}

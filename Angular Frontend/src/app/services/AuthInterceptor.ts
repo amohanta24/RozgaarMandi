@@ -7,7 +7,7 @@ import { inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { catchError, Observable, throwError } from "rxjs";
 import { ProblemDetails } from "../models/ProlemDetails";
-import { ErrorDialogComponen } from "../components/error-dialog-componen/error-dialog-componen";
+import { ErrorDialogComponen } from "../components/error-dialog-component/error-dialog-component";
 
 export const AuthInterceptor : HttpInterceptorFn = (req,next) => {
   const dialog = inject(MatDialog);

@@ -2,17 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmployerType, Role } from '../../../models/Enum.model';
-import { ConfirmationModal } from "../../shared/confirmation-modal/confirmation-modal";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { signUpRequest } from '../../../models/signUpRequest.model';
 import { LoginService } from '../../../services/login-service';
 import { Router } from '@angular/router';
-import { ErrorDialogComponen } from '../../error-dialog-componen/error-dialog-componen';
+import { ErrorDialogComponen } from '../../error-dialog-component/error-dialog-component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-signup',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, ConfirmationModal,MatToolbarModule , ],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule,MatToolbarModule , ],
   templateUrl: './signup.html',
   styleUrl: './signup.css'
 })

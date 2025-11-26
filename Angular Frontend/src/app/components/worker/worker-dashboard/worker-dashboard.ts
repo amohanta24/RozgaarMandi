@@ -14,8 +14,9 @@ import { MyJobs } from "../../employer/my-jobs/my-jobs";
 import { EmployerAssignedJobs } from "../../employer/employer-assigned-jobs/employer-assigned-jobs";
 import { EmployerCompletedJobs } from "../../employer/employer-completed-jobs/employer-completed-jobs";
 import { AppliedJobs } from "../applied-jobs/applied-jobs";
+import { NavbarComponent } from "../../shared/navbar/navbar";
 @Component({
-  imports: [FormsModule, ReactiveFormsModule, MatTab, MatTabGroup, MatTabsModule, AppliedJobs, CompletedJobs, OpendJobs, AssignedJobs, AppliedJobs],
+  imports: [FormsModule, ReactiveFormsModule, MatTab, MatTabGroup, MatTabsModule, AppliedJobs, CompletedJobs, OpendJobs, AssignedJobs, AppliedJobs, NavbarComponent],
   selector: 'app-worker-dashboard',
   templateUrl: './worker-dashboard.html',
   styleUrls: ['./worker-dashboard.css']

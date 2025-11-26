@@ -57,10 +57,9 @@ public class EmployerController {
 	
 	@PreAuthorize("hasAuthority('EMPLOYER')")
 	@GetMapping("/jobs/assigned")
-    public ResponseEntity<List<JobResponseDTO>> getAssignedJobs(@RequestHeader("Authorization") String header) throws BusinessValidationException {
-         List<Job> assignedJobsByEmployer = employerService.getAssignedJobsByEmployer(header);
-         List<JobResponseDTO> response = MapperUtils.jobToJobResponseDTO(assignedJobsByEmployer);
-         return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<List<JobPostedByEmployerResponse>> getAssignedJobs(@RequestHeader("Authorization") String header) throws BusinessValidationException {
+         List<JobPostedByEmployerResponse> assignedJobsByEmployer = employerService.getAssignedJobsByEmployer(header);
+         return new ResponseEntity<>(assignedJobsByEmployer, HttpStatus.OK);
     }
 	
 	@PreAuthorize("hasAuthority('EMPLOYER')")

@@ -13,6 +13,7 @@ import com.rozgaarmandi.Models.Job;
 import com.rozgaarmandi.Models.JobPostedByEmployerResponse;
 import com.rozgaarmandi.Models.Payment;
 import com.rozgaarmandi.Models.Worker;
+import com.rozgaarmandi.Models.WorkerJobApplication;
 import com.rozgaarmandi.Models.Job.JobStatus;
 import com.rozgaarmandi.Repositories.EmployerRepository;
 import com.rozgaarmandi.Repositories.JobRepository;
@@ -48,7 +49,7 @@ public class EmployerService {
 
 	public List<JobPostedByEmployerResponse> getJobsByEmployer(String header) throws BusinessValidationException {
 		Employer employer = (Employer) jwt.getUserFromHeader(header);
-		List<Job> postedJobs = employer.getPostedJobs().stream().sorted(Comparator.comparing(Job::getCreatedOn)).toList();
+		List<Job> postedJobs = employer.getPostedJobs().stream().filter(obj-> obj.getStatus().equals(JobStatus.OPEN)).sorted(Comparator.comparing(Job::getCreatedOn).reversed()).toList();
 		
 		List<JobResponseDTO> jobs = MapperUtils.jobToJobResponseDTO(postedJobs);
 		
@@ -70,7 +71,8 @@ public class EmployerService {
 		Optional<Job> job = jobRepo.findById(jobId);
 		if(job.isPresent()) {
 			if(job.get().getEmployer().getId()==employer.getId()) {
-				List<Worker> appliedWorkers = job.get().getAppliedWorkers();
+				List<Worker> appliedWorkers = job.get().getJobApplications().stream()
+						.map(WorkerJobApplication::getWorker).toList();
 				return appliedWorkers;
 			}
 			throw new BusinessValidationException(401, "You are not authorized to view these details");
@@ -78,10 +80,19 @@ public class EmployerService {
 		throw new BusinessValidationException(400, "Job does not exist");
 	}
 
-	public List<Job> getAssignedJobsByEmployer(String header) throws BusinessValidationException {
+	public List<JobPostedByEmployerResponse> getAssignedJobsByEmployer(String header) throws BusinessValidationException {
 	    Employer employer = (Employer) jwt.getUserFromHeader(header);
-	    List<Job> jobs = jobRepo.findByEmployerAndStatus(employer, Job.JobStatus.IN_PROGRESS);
-	    return jobs;
+	    List<Job> assignedJobs = jobRepo.findByEmployerAndStatus(employer, Job.JobStatus.IN_PROGRESS);
+	    List<JobResponseDTO> jobs = MapperUtils.jobToJobResponseDTO(assignedJobs);
+	    
+	    List<JobPostedByEmployerResponse> responseJobList = jobs.stream().map(job -> {
+			JobPostedByEmployerResponse response = new JobPostedByEmployerResponse();
+			response.setJob(job);
+			response.setApplicants(MapperUtils.workerToWorkerResponseDTO(workerRepo.findByIdIn(job.getAppliedWorkerIds())));
+			return response;
+		}).toList();
+	    
+	    return responseJobList;
 	}
 
 

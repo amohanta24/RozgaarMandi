@@ -19,10 +19,6 @@ public class Worker extends UserInfo {
 	private String skills;
 	private String location;
 	
-	@ManyToMany(mappedBy = "appliedWorkers")
-	private List<Job> appliedJobs;
-	
-	
 	@OneToMany(mappedBy ="assignedWorker")
 	private List<Job> assignedJobs;
 	

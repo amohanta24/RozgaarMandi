@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogContent, MatDialogActions } fro
 @Component({
   selector: 'app-error-dialog-componen',
   imports: [MatDialogContent, MatDialogActions],
-  templateUrl: './error-dialog-componen.html',
-  styleUrl: './error-dialog-componen.css'
+  templateUrl: './error-dialog-component.html',
+  styleUrl: './error-dialog-component.css'
 })
 export class ErrorDialogComponen {
 

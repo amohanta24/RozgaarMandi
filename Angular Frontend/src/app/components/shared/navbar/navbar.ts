@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from "@angular/material/icon";
 import { MatToolbar } from "@angular/material/toolbar";
 import { MatDialog } from '@angular/material/dialog';
-import { LogoutDialogComponent } from '../logout-dialog-component/logout-dialog-component';
+import { DialogComponent} from '../dialog-component/dialog-component';
+
 
 @Component({
   selector: 'app-navbar',
@@ -16,10 +17,9 @@ export class NavbarComponent {
   constructor(private dialog: MatDialog) {}
 
   onPowerClick(): void {
-    const dialogRef = this.dialog.open(LogoutDialogComponent, {
+    const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      panelClass: 'logout-dialog-panel',
-    });
+      data: {message:"Are you sure you want to logout?" , title : "Logout Confirmation" , buttonText: 'Logout'}});
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

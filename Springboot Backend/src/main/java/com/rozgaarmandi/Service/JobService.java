@@ -1,6 +1,7 @@
 package com.rozgaarmandi.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class JobService {
 
 		if (job.isPresent()) {
 			if (job.get().getStatus().equals(JobStatus.OPEN)) {
-				if (!job.get().getAppliedWorkers().contains(worker)) {
+				if (!job.get().getJobApplications().stream().map(WorkerJobApplication::getWorker).toList().contains(worker)) {
 					WorkerJobApplication app = new WorkerJobApplication();
 					app.setJob(job.get());
 					app.setWorker(worker);
@@ -88,13 +89,13 @@ public class JobService {
 		throw new BusinessValidationException(400, "Job or Worker does not exist");
 	}
 	
-	public Object deleteJob(int jobId, String header) throws BusinessValidationException {
+	public ResponseEntity<Map<String, String>> deleteJob(int jobId, String header) throws BusinessValidationException {
 		Employer employer = (Employer) jwt.getUserFromHeader(header);
 		Optional<Job> job = jobRepo.findById(jobId);
 		if(job.isPresent()) {
 			if(job.get().getEmployer().getId() == employer.getId()) {
 				jobRepo.deleteById(jobId);
-				return ResponseEntity.status(HttpStatus.OK).body("Job deleted successfully");
+				return ResponseEntity.status(HttpStatus.OK).body(Map.of("message", "Job deleted successfully"));
 			}
 			throw new BusinessValidationException(401, "You are not authorized to delete this job");
 		}
@@ -197,6 +198,28 @@ public class JobService {
 	public Payment getPaymentDetails(int jobId) throws BusinessValidationException {
 		 Job job = jobRepo.findById(jobId).orElseThrow(()-> new BusinessValidationException(400, "Job Not found"));
 		 return job.getPayment();
+	}
+
+	
+
+	public Job unassignJob(Integer jobId, String header, Integer workerId) throws BusinessValidationException {
+		Employer employer = (Employer) jwt.getUserFromHeader(header);
+		Optional<Job> job = jobRepo.findById(jobId);
+		Optional<Worker> worker = workerRepo.findById(workerId);
+		if(job.isPresent() && worker.isPresent()) {
+			if(job.get().getAssignedWorker()!= null) {
+				if(job.get().getEmployer().getId()==employer.getId() && job.get().getAssignedWorker().getId()==workerId) {
+					job.get().setStatus(JobStatus.OPEN);
+					job.get().setAssignedWorker(null);
+					Job savedJob = jobRepo.save(job.get());
+					return savedJob;
+				}
+			}
+			
+			throw new BusinessValidationException(403, "You are not authorized to unassign this job");
+		}
+		
+		throw new BusinessValidationException(400, "Job or Worker does not exist");
 	}
 	
 }

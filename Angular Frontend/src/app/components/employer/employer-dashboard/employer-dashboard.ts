@@ -10,10 +10,11 @@ import { EmployerCompletedJobs } from "../employer-completed-jobs/employer-compl
 import { MatToolbar } from "@angular/material/toolbar";
 import { MatIcon } from "@angular/material/icon";
 import { NavbarComponent } from "../../shared/navbar/navbar";
+import { SideNav } from "../../shared/side-nav/side-nav";
 
 @Component({
   selector: 'app-employer-dashboard',
-  imports: [MatTab, MatTabGroup, MatTabsModule, PostJob, MyJobs, EmployerAssignedJobs, EmployerCompletedJobs, MatToolbar, MatIcon, NavbarComponent],
+  imports: [MatTab, MatTabGroup, MatTabsModule, PostJob, MyJobs, EmployerAssignedJobs, EmployerCompletedJobs, MatToolbar, MatIcon, NavbarComponent, SideNav],
   templateUrl: './employer-dashboard.html',
   styleUrl: './employer-dashboard.css'
 })

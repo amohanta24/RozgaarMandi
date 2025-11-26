@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LogoutDialogComponent } from './logout-dialog-component';
+import { ErrorDialogComponen } from './error-dialog-component';
 
-describe('LogoutDialogComponent', () => {
-  let component: LogoutDialogComponent;
-  let fixture: ComponentFixture<LogoutDialogComponent>;
+describe('ErrorDialogComponen', () => {
+  let component: ErrorDialogComponen;
+  let fixture: ComponentFixture<ErrorDialogComponen>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LogoutDialogComponent]
+      imports: [ErrorDialogComponen]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LogoutDialogComponent);
+    fixture = TestBed.createComponent(ErrorDialogComponen);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

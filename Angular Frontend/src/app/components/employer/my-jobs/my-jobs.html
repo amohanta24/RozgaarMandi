@@ -8,7 +8,7 @@
   <mat-card class="parent-job-card" appearance="outlined">
     <mat-card-header class="job-header">
       <mat-card-title>{{job.job.jobTitle}}</mat-card-title>
-      <button type="button" class="btn btn-outline-danger" (click)="deleteJob(job)">
+      <button type="button" class="btn btn-outline-danger btn-delete" (click)="deleteJob(job)">
         <svg
           xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
@@ -40,7 +40,8 @@
 
     
   </mat-card>
-  
+
+
   @if(job.viewApplicants){         
     @for (applicant of job.applicants; track applicant) {
       <div class="applicant-container">
@@ -57,13 +58,32 @@
                 }
               </div>
             </div>
-      
-            <button 
+  
+            @if(job.job.assignedWorkerId===null){
+              <button 
               type="button" 
               class="btn btn-outline-success assign-btn"
               (click)="assignJob(job,applicant)">
               Assign
             </button>
+          }@else if(job.job.assignedWorkerId!=null && job.job.assignedWorkerId===applicant.workerId){
+            <button 
+            type="button" 
+            class="btn btn-outline-danger unassign-btn"
+            (click)="unassignJob(job,applicant)">
+            Revoke
+          </button>
+          }@else {
+            <button 
+            type="button" 
+            class="btn btn-outline-success assign-btn"
+            disabled>
+            Assign
+          </button>
+          }
+              
+            
+
           </div>
       
           <div class="divider"></div>
@@ -79,7 +99,6 @@
       
 
   }
-    
   }
 
      
