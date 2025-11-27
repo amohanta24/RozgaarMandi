@@ -28,6 +28,7 @@ export class signUpRequest{
     skills?: string[];
 
     businessName?: string;
+    location?: string
 
 
   }

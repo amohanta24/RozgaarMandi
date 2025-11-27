@@ -36,7 +36,12 @@
   z-index: 1;
   width: 360px;
   min-height: 200px;
-  background: #106EBE;
+  background: linear-gradient(
+    135deg,
+    #1b5d58 0%,
+    #164f4b 40%,
+    #6d323d 140%
+  );
   border-radius: 15px;
   padding: 30px 40px;
   box-sizing: border-box;
@@ -101,7 +106,7 @@
 
 .loginBox input[type="text"]:focus,
 .loginBox input[type="password"]:focus {
-  border-bottom: 2px solid #ed7421; /* accent line */
+  border-bottom: 2px solid #6d323d ;/* accent line */
   color:white; /* focus color */
 }
 
@@ -127,9 +132,8 @@
   }
   
   .login-btn:hover {
-    background: #ed7421;
+    background: #6d323d ;
     transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(237, 116, 33, 0.5);
   }
   
   /* 🧭 SIGN UP BUTTON */

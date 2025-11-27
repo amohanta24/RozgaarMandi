@@ -3,7 +3,12 @@
    ====================================================== */
 
    .toolbar {
-    background-color: #1b5d58; /* same as tab background */
+    background: linear-gradient(
+    135deg,
+    #1b5d58 0%,
+    #164f4b 40%,
+    #6d323d 140%
+  );/* same as tab background */
     color: #ffffff;
     display: flex;
     align-items: center;

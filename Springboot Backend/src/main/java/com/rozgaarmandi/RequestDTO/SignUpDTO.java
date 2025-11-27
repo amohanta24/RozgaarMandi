@@ -16,11 +16,6 @@ public class SignUpDTO {
 	private String email;
 	private String phoneNumber;
 	private Role role;
-	
-	private String workerFirstName;
-	private String workerLastName;
-	private String employerFirstName;
-	private String employerLastName;
 
 	// Employer-specific fields
 	private EmployerType employerType;
@@ -29,10 +24,15 @@ public class SignUpDTO {
 	private String gstNumber;
 	private String businessDescription;
 	private String businessName;
+	private String employerFirstName;
+	private String employerLastName;
 	
 
 
 	// Worker-specific fields
 	private String skills;
+	private String location;
+	private String workerFirstName;
+	private String workerLastName;
 
 }

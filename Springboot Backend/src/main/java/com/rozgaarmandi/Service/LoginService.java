@@ -107,7 +107,7 @@ public class LoginService {
                 
                 worker.setFirstName(request.getWorkerFirstName());
                 worker.setLastName(request.getWorkerLastName());
-                
+                worker.setLocation(request.getLocation());               
                 
                 return workerRepo.save(worker);
 

@@ -107,7 +107,7 @@ public class EmployerService {
 	public List<Job> getCompletedJobs(String header) throws BusinessValidationException {
 		Employer employer = (Employer) jwt.getUserFromHeader(header);
 		List<Job> postedJobs = employer.getPostedJobs().stream().filter(obj-> obj.getStatus().equals(JobStatus.WORK_DONE) || obj.getStatus().equals(JobStatus.COMPLETED)).toList();
-		return postedJobs;
+		return postedJobs;	
 	}
 
 	
