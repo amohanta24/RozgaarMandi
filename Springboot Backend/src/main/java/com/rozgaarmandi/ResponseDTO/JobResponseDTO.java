@@ -10,7 +10,7 @@ import lombok.Data;
 public class JobResponseDTO {
 	
 	private int jobId;
-	private Integer employerId;
+	private EmployerResponseDTO employer;
 	private List<Integer> appliedWorkerIds;
 	private Integer assignedWorkerId;
 	private String jobTitle;

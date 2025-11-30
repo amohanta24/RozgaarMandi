@@ -14,10 +14,12 @@
                 <mat-chip>₹{{job.pay}}</mat-chip>
                 <mat-chip>{{ job.location }}</mat-chip>
               </mat-chip-set>
+            </mat-card-footer>
               <div class="btn-group dropright">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  {{job.status.replace('_', ' ').toLowerCase() | titlecase}}
                 </button>
+                <div class="footer">
                 <div class="dropdown-menu">
                   @for (status of jobStatus; track status) {
                     <button class="dropdown-item"
@@ -27,8 +29,9 @@
                   }
                 </div>
               </div>
+              </div>
             
-            </mat-card-footer>
+           
           </mat-card>
 }
 </div>

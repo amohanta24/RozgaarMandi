@@ -3,7 +3,11 @@
   }
   
   .example-card-footer {
+
     padding: 16px;
+    justify-content: center;
+    align-items: center;
+
   }
   
   .container{
@@ -14,12 +18,19 @@
     width: fit-content;
   }
 
-  mat-chip-set {
-    display: flex;
-    justify-content: space-evenly; /* equal spacing between chips */
-    width: 100%; /* control total width from center, adjust as needed */
-    align-items : center
+
+  .footer{
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
+ 
+
+  
+
+
 
   
   

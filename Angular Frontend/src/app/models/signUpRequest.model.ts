@@ -9,7 +9,7 @@ export class signUpRequest{
     phoneNumber!: string;
     role!: Role;
     
-    //EMPLOYER SPECIFIC
+
     employerType?: EmployerType;
 
     //IF EMPLOYER == BUSINESS

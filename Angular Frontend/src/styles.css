@@ -2,15 +2,19 @@
    🌐 GLOBAL STYLES — RozgaarMandi
    =========================================================== */
 
-/* Basic document setup */
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #fafafa;
-  color: #333;
+body {
+  background: url('/backgroundImage.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* dark overlay */
+  backdrop-filter: blur(2px);
+  z-index: -1;
+}
 /* ===========================================================
    📱 LAYOUT STRUCTURE
    =========================================================== */

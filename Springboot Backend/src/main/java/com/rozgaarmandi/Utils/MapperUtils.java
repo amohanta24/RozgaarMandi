@@ -43,7 +43,7 @@ public class MapperUtils{
 	        JobResponseDTO dto = modelMapper.map(obj, JobResponseDTO.class);
 
 	        setWorkerIds(obj, dto);
-	        dto.setEmployerId(obj.getEmployer() != null ? obj.getEmployer().getId() : null);
+	        dto.setEmployer(employerToEmployerResponseDTO(obj.getEmployer()).get(0));
 	        dto.setReviewsIds(obj.getReviews() != null ? obj.getReviews().stream().map(Review::getReviewId).toList() : null);
 
 	        return dto;
@@ -102,14 +102,19 @@ public class MapperUtils{
 		return employerList.stream().map(obj -> {
 			EmployerResponseDTO dto = modelMapper.map(obj, EmployerResponseDTO.class);
 			
-			dto.setPaymentIds(obj.getPayments()!=null ? obj.getPayments().stream().map(Payment::getId).toList() : null);
-			dto.setPostedJobsIds(obj.getPostedJobs()!=null ? obj.getPostedJobs().stream().map(Job::getJobId).toList() : null);
-			dto.setReceivedReviewIds(obj.getReceivedReviews() != null ? obj.getReceivedReviews().stream().map(Review::getReviewId).toList() : null);
-			dto.setWrittenReviewIds(obj.getWrittenReviews() !=null ? obj.getWrittenReviews().stream().map(Review::getReviewId).toList() : null);
+			setEmployerFields(obj, dto);
 			
 			return dto;
 			
 		}).toList();
+	}
+
+	@PreAuthorize("hasAuthority('EMPLOYER')")
+	private static void setEmployerFields(Employer obj, EmployerResponseDTO dto) {
+		dto.setPaymentIds(obj.getPayments()!=null ? obj.getPayments().stream().map(Payment::getId).toList() : null);
+		dto.setPostedJobsIds(obj.getPostedJobs()!=null ? obj.getPostedJobs().stream().map(Job::getJobId).toList() : null);
+		dto.setReceivedReviewIds(obj.getReceivedReviews() != null ? obj.getReceivedReviews().stream().map(Review::getReviewId).toList() : null);
+		dto.setWrittenReviewIds(obj.getWrittenReviews() !=null ? obj.getWrittenReviews().stream().map(Review::getReviewId).toList() : null);
 	}
 	
 	@SuppressWarnings("unchecked")

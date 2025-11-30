@@ -1,9 +1,10 @@
 import { JobService } from "../job-servie";
+import { Employer } from "./employerresponse.model";
 import { JobStatus } from "./Enum.model";
 
 export interface Job {
   jobId: number;
-  employerId: number;
+  employer: Employer;
   appliedWorkerIds: number[];      
   assignedWorkerId: number;
   jobTitle: string;

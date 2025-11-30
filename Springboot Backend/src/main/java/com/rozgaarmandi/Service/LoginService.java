@@ -55,7 +55,7 @@ public class LoginService {
 	}
 
 	public UserInfo signUp(SignUpDTO request) throws BusinessValidationException {
-        if (userRepo.existsByEmail(request.getEmail()) || userRepo.existsByPhoneNumber(request.getPhoneNumber())) {
+        if (userRepo.existsByEmail(request.getEmail()) || userRepo.existsByPhoneNumber(request.getPhoneNumber()) || userRepo.existsByUsername(request.getPhoneNumber())) {
             throw new BusinessValidationException(409, "Email or phone number already registered");
         }
 
